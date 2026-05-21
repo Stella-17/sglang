@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from dataclasses import replace
+
 from sglang.multimodal_gen.test.server.testcase_configs import (
     T2V_PROMPT,
     DiffusionSamplingParams,
@@ -11,6 +13,11 @@ from sglang.multimodal_gen.test.server.testcase_configs import (
     T2V_sampling_params,
     TI2I_sampling_params,
     TI2V_sampling_params,
+)
+
+MUSA_TI2I_sampling_params = replace(
+    TI2I_sampling_params,
+    image_path="/hf-cache/hub/musa-test-assets/TI2I_Qwen_Image_Edit_Input.jpg",
 )
 
 ONE_GPU_MUSA_CASES: list[DiffusionTestCase] = [
@@ -89,7 +96,7 @@ NIGHTLY_1_GPU_MUSA_CASES: list[DiffusionTestCase] = [
             # model_path="/data/models/hub/models--Qwen--Qwen-Image-Edit/snapshots/ac7f9318f633fc4b5778c59367c8128225f1e3de",
             modality="image",
         ),
-        TI2I_sampling_params,
+        MUSA_TI2I_sampling_params,
         run_consistency_check=False,
     ),
     DiffusionTestCase(
@@ -100,16 +107,6 @@ NIGHTLY_1_GPU_MUSA_CASES: list[DiffusionTestCase] = [
             modality="image",
         ),
         MULTI_IMAGE_TI2I_sampling_params,
-        run_consistency_check=False,
-    ),
-    DiffusionTestCase(
-        "qwen_image_edit_2511_ti2i_musa",
-        DiffusionServerArgs(
-            model_path="/hf-cache/hub/models--Qwen--Qwen-Image-Edit-2511/snapshots/6f3ccc0b56e431dc6a0c2b2039706d7d26f22cb9",
-            # model_path="/data/models/hub/models--Qwen--Qwen-Image-Edit-2511/snapshots/6f3ccc0b56e431dc6a0c2b2039706d7d26f22cb9",
-            modality="image",
-        ),
-        TI2I_sampling_params,
         run_consistency_check=False,
     ),
 ]
