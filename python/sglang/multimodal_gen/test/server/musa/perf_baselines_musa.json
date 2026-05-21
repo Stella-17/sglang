@@ -5,6 +5,67 @@
         "description": "Reference numbers captured from the CI diffusion server baseline run"
     },
     "scenarios": {
+        "zimage_image_t2i_musa": {
+            "stages_ms": {
+                "InputValidationStage": 0.08,
+                "TextEncodingStage": 3761.4,
+                "LatentPreparationStage": 4.06,
+                "TimestepPreparationStage": 21.94,
+                "DenoisingStage": 4873.8,
+                "DecodingStage": 252.49
+            },
+            "denoise_step_ms": {
+                "0": 3281.35,
+                "2": 209.69,
+                "3": 199.26,
+                "5": 200.42,
+                "6": 207.8,
+                "8": 205.19
+            },
+            "expected_e2e_ms": 12161.85,
+            "expected_avg_denoise_ms": 540.67,
+            "expected_median_denoise_ms": 205.19
+        },
+        "qwen_image_layered_i2i_musa": {
+            "stages_ms": {
+                "QwenImageLayeredBeforeDenoisingStage": 9995.6,
+                "TimestepPreparationStage": 7.56,
+                "DenoisingStage": 89763.95,
+                "DecodingStage": 149.1
+            },
+            "denoise_step_ms": {
+                "0": 10730.03,
+                "10": 1608.06,
+                "20": 1618.92,
+                "29": 1612.85,
+                "39": 1617.04,
+                "49": 1609.12
+            },
+            "expected_e2e_ms": 100160.49,
+            "expected_avg_denoise_ms": 1794.89,
+            "expected_median_denoise_ms": 1613.11
+        },
+        "fast_hunyuan_video_musa": {
+            "stages_ms": {
+                "InputValidationStage": 0.08,
+                "TextEncodingStage": 4146.14,
+                "TimestepPreparationStage": 18.33,
+                "LatentPreparationStage": 2.42,
+                "DenoisingStage": 17236.59,
+                "DecodingStage": 7019.29
+            },
+            "denoise_step_ms": {
+                "0": 5462.17,
+                "1": 2338.96,
+                "2": 2355.67,
+                "3": 2353.45,
+                "4": 2359.64,
+                "5": 2363.04
+            },
+            "expected_e2e_ms": 32799.37,
+            "expected_avg_denoise_ms": 2872.16,
+            "expected_median_denoise_ms": 2357.66
+        },
         "qwen_image_t2i_musa": {
             "stages_ms": {
                 "InputValidationStage": 0.09,

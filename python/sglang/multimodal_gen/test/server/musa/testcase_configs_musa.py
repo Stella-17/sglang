@@ -5,8 +5,10 @@ from sglang.multimodal_gen.test.server.testcase_configs import (
     DiffusionSamplingParams,
     DiffusionServerArgs,
     DiffusionTestCase,
+    MULTI_FRAME_I2I_sampling_params,
     MULTI_IMAGE_TI2I_sampling_params,
     T2I_sampling_params,
+    T2V_sampling_params,
     TI2I_sampling_params,
     TI2V_sampling_params,
 )
@@ -39,6 +41,37 @@ ONE_GPU_MUSA_CASES: list[DiffusionTestCase] = [
 
 
 NIGHTLY_1_GPU_MUSA_CASES: list[DiffusionTestCase] = [
+    DiffusionTestCase(
+        "zimage_image_t2i_musa",
+        DiffusionServerArgs(
+            model_path="/hf-cache/hub/models--Tongyi-MAI--Z-Image-Turbo/snapshots/f332072aa78be7aecdf3ee76d5c247082da564a6",
+            # model_path="/data/models/hub/models--Tongyi-MAI--Z-Image-Turbo/snapshots/f332072aa78be7aecdf3ee76d5c247082da564a6",
+            modality="image",
+        ),
+        T2I_sampling_params,
+        run_consistency_check=False,
+    ),
+    DiffusionTestCase(
+        "qwen_image_layered_i2i_musa",
+        DiffusionServerArgs(
+            model_path="/hf-cache/hub/models--Qwen--Qwen-Image-Layered/snapshots/8f0ca708dfff6ba1dd5f2d85d78f8c108a040bcf",
+            # model_path="/data/models/hub/models--Qwen--Qwen-Image-Layered/snapshots/8f0ca708dfff6ba1dd5f2d85d78f8c108a040bcf",
+            modality="image",
+        ),
+        MULTI_FRAME_I2I_sampling_params,
+        run_consistency_check=False,
+    ),
+    DiffusionTestCase(
+        "fast_hunyuan_video_musa",
+        DiffusionServerArgs(
+            model_path="/hf-cache/hub/models--FastVideo--FastHunyuan-diffusers/snapshots/7e948fca38562e218ae34485e005956592d36d9b",
+            # model_path="/data/models/hub/models--FastVideo--FastHunyuan-diffusers/snapshots/7e948fca38562e218ae34485e005956592d36d9b",
+            modality="video",
+            custom_validator="video",
+        ),
+        T2V_sampling_params,
+        run_consistency_check=False,
+    ),
     DiffusionTestCase(
         "qwen_image_2512_t2i_musa",
         DiffusionServerArgs(
