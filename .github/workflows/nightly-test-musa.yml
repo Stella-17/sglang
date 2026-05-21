@@ -85,10 +85,12 @@ jobs:
     runs-on: s5000-1-gpu-runner
     timeout-minutes: 120
     env:
-      SGLANG_USE_MODELSCOPE: true
+      SGLANG_USE_MODELSCOPE: false
       SGLANG_IS_IN_CI: true
       TORCHADA_ENABLE_CPP_OPS: 1
+      HF_HOME: /hf-cache
       HF_HUB_CACHE: /hf-cache/hub
+      HF_HUB_OFFLINE: 1
     steps:
       - name: Gate by job_filter
         id: gate
@@ -129,10 +131,12 @@ jobs:
         part: [0, 1]
     timeout-minutes: 240
     env:
-      SGLANG_USE_MODELSCOPE: true
+      SGLANG_USE_MODELSCOPE: false
       SGLANG_IS_IN_CI: true
       TORCHADA_ENABLE_CPP_OPS: 1
+      HF_HOME: /hf-cache
       HF_HUB_CACHE: /hf-cache/hub
+      HF_HUB_OFFLINE: 1
     steps:
       - name: Gate by job_filter
         id: gate
@@ -173,10 +177,12 @@ jobs:
     runs-on: s5000-2-gpu-runner
     timeout-minutes: 240
     env:
-      SGLANG_USE_MODELSCOPE: true
+      SGLANG_USE_MODELSCOPE: false
       SGLANG_IS_IN_CI: true
       TORCHADA_ENABLE_CPP_OPS: 1
+      HF_HOME: /hf-cache
       HF_HUB_CACHE: /hf-cache/hub
+      HF_HUB_OFFLINE: 1
     steps:
       - name: Gate by job_filter
         id: gate
