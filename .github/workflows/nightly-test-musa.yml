@@ -169,7 +169,8 @@ jobs:
           python3 sglang/multimodal_gen/test/run_suite_musa.py \
             --suite 1-gpu-musa-nightly \
             --partition-id ${{ matrix.part }} \
-            --total-partitions 2
+            --total-partitions 2 \
+            --continue-on-error
 
   # ==================== Multimodal: 2-GPU ====================
   nightly-test-multimodal-server-2-gpu-musa:
@@ -213,7 +214,8 @@ jobs:
         run: |
           cd python
           python3 sglang/multimodal_gen/test/run_suite_musa.py \
-            --suite 2-gpu-musa
+            --suite 2-gpu-musa \
+            --continue-on-error
 
   # ==================== finish ====================
   nightly-test-musa-finish:
