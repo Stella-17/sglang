@@ -24,6 +24,17 @@ done
 PIP_INSTALL="python3 -m pip install --no-cache-dir"
 ${PIP_INSTALL} --upgrade pip setuptools torchada --user
 
+echo "Checking stale torchada extension locks..."
+if ps -eo comm=,args= | grep -E '(^|[[:space:]])(mcc|ninja)([[:space:]]|$)|torchada_cpp_ops' | grep -v grep; then
+    echo "::error::Active torchada extension build detected; refusing to remove lock files"
+    exit 1
+fi
+find "${HOME}/.cache/torch_extensions" \
+    -path '*/torchada_cpp_ops/lock' \
+    -type f \
+    -print \
+    -delete 2>/dev/null || true
+
 WHL_DIR="/sglang-checkout/whl"
 if [ -d "$WHL_DIR" ] && compgen -G "${WHL_DIR}"/*.whl > /dev/null; then
     echo "Uninstall old packages based on wheel METADATA..."
