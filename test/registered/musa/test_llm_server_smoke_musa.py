@@ -53,7 +53,7 @@ class TestMusaDeepSeekV2LiteChatServerSmoke(DefaultServerBase):
         )
         self.assertEqual(resp.status_code, 200, resp.text)
 
-    def test_openai_chat_completion(self):
+    def test_send_receive_chat_message_contains_beijing(self):
         resp = requests.post(
             self.base_url + "/v1/chat/completions",
             json={
