@@ -76,6 +76,10 @@ class TestMusaDeepSeekV2LiteChatServerSmoke(DefaultServerBase):
         self.assertIn("choices", body)
         self.assertGreater(len(body["choices"]), 0)
         content = body["choices"][0]["message"]["content"]
+        print(
+            f"[MUSA Chat Completion] prompt='What is the capital of China? Answer in one word.' response={content!r}",
+            flush=True,
+        )
         self.assertIsInstance(content, str)
         self.assertGreater(len(content.strip()), 0)
         self.assertIn("Beijing", content)
